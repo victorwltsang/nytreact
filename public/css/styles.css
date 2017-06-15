@@ -1,0 +1,16 @@
+.jumbotron-colors {
+  background-color: #20315A;
+  color: white;
+}
+
+.panel-heading-custom {
+  background-color: #20315A !important;
+}
+
+.fa-padding-right {
+  padding-right: 10px;
+}
+
+.btn-margin-right {
+  margin-right: 10px;
+}
