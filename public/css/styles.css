@@ -14,3 +14,8 @@
 .btn-margin-right {
   margin-right: 10px;
 }
+
+.panel-inner-button {
+  float: right;
+  margin-top: -35px;
+}

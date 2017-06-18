@@ -1,5 +1,5 @@
 {
-  "name": "react-example",
+  "name": "nyt-react",
   "version": "1.0.0",
   "description": "",
   "main": "public/index.html",
@@ -9,7 +9,7 @@
     "start": "webpack -w & nodemon server",
     "build": "webpack"
   },
-  "author": "Ahmed Haque",
+  "author": "Victor Tsang",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.12.0",
@@ -18,7 +18,8 @@
     "mongoose": "^4.5.1",
     "morgan": "^1.7.0",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "request": "^2.72.0"
   },
   "devDependencies": {
     "babel-core": "^6.3.13",

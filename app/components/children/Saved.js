@@ -1,28 +1,45 @@
-// Include React
-var React = require("react");
+var React = require('react');
 
-// This is the History component. It will be used to show a log of  recent searches.
-var History = React.createClass({
-  // Here we describe this component's render method
-  render: function() {
-    return (
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title text-center">Search History</h3>
-        </div>
-        <div className="panel-body text-center">
+var Saved = React.createClass({
 
-          {/* Here we use a map function to loop through an array in JSX */}
-          {this.props.history.map(function(search, i) {
-            return (
-              <p key={i}>{search.location} - {search.date}</p>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
+	getInitialState: function(){
+		return {
+			savedArticles: []
+		}
+	},
+
+	deleteClicker: function(result){
+		this.props.deleteArticle(result);
+
+	},
+
+	componentWillReceiveProps: function(nextProps){
+		var self = this;
+		var myResults = nextProps.savedArticles.map(function(search, i){
+			var deleteArticle = self.deleteClicker.bind(self, search);
+			return <div className="list-group-item" key={i}><a href={search.url} target="_blank">{search.title}</a><br />{search.date}<br /><button type="button" className="btn btn-danger panel-inner-button"  onClick={deleteArticle}>Delete</button></div>
+		});
+
+		this.setState({savedArticles: myResults});
+	},
+
+	render: function(){
+
+		return(
+
+			<div className="panel panel-info">
+				<div className="panel-heading">
+					<h3 className="panel-title"><strong><i className="fa fa-cloud-download fa-padding-right"></i>Saved Articles</strong></h3>
+				</div>
+				<div className="panel-body">
+
+					{this.state.savedArticles}
+				</div>
+			</div>
+
+		)
+	}
 });
 
-// Export the component back for use in other files
-module.exports = History;
+
+module.exports = Saved;
