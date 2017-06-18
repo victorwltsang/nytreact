@@ -31,14 +31,14 @@ var helpers = {
 
   },
 
-  saveArticle: function(title, date, url) {
+  postArticle: function(title, date, url) {
 
     axios.post('/api/saved', {
       title: title,
       date: date,
       url: url
     }).then(function(results) {
-
+      console.log(results);
       return (results);
     })
   }

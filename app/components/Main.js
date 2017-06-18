@@ -1,4 +1,5 @@
 var React = require('react');
+var axios = require('axios');
 var Search = require('./Children/Search');
 var Saved = require('./Children/Saved');
 var Results = require('./Children/Results');
@@ -16,7 +17,7 @@ var Main = React.createClass({
   },
 
   saveArticle: function(title, date, url) {
-    helpers.saveArticle(title, date, url);
+    helpers.postArticle(title, date, url);
     this.getArticle();
   },
 
