@@ -4,7 +4,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 var Article = require('./models/Article.js');
-
+mongoose.Promise = Promise;
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -17,9 +17,12 @@ app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
 app.use(express.static('./public'));
 
-
-mongoose.connect("mongodb://localhost/nytreact");
-
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  // Database configuration with mongoose
+  mongoose.connect("mongodb://localhost/nytreact");
+}
 
 var db = mongoose.connection;
 
