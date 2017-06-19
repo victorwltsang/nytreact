@@ -4,7 +4,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 var Article = require('./models/Article.js');
-mongoose.Promise = Promise;
+
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -15,9 +15,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
-app.use(express.static('./public'));
+app.use(express.static("public"));
 
-mongoose.connect("mongodb://heroku_6qc8zh27:83uvr3hook6pm6vaefb4a3966b@ds131512.mlab.com:31512/heroku_6qc8zh27");
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  // Database configuration with mongoose
+  mongoose.connect("mongodb://localhost/nytreact");
+}
 
 
 var db = mongoose.connection;
